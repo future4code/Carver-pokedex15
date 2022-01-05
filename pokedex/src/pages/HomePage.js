@@ -1,12 +1,12 @@
 import { useContext } from "react"
 import { useHistory } from "react-router-dom"
-import UrlsContext from "../context/UrlsContext"
+import GlobalStateContext from "../context/GlobalContext/GlobalStateContext"
 import { goToDetailPage } from "../routes/coordinator"
 
 
 const HomePage = () => {
     const history = useHistory()
-    const detalhesPokemons = useContext(UrlsContext)
+    const detalhesPokemons = useContext(GlobalStateContext)
 
     const CardPokemon = detalhesPokemons && detalhesPokemons.map((pokemon) => {
         return (
