@@ -4,11 +4,9 @@ import HomePage from '../pages/HomePage'
 import PokedexPage from '../pages/PokedexPage'
 import DetailPage from '../pages/DetailPage/DetailPage'
 import Header from '../components/Header/Header'
-import HistoryState from '../context/HistoryContext/HistoryState'
 
 const Router = () => {
     return (
-        <HistoryState>
             <BrowserRouter>
                 <Header />
                 <Switch>
@@ -26,8 +24,6 @@ const Router = () => {
                     </Route>
                 </Switch>
             </BrowserRouter>
-        </HistoryState>
-
     )
 }
 

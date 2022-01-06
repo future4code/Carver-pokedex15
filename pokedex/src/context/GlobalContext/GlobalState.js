@@ -33,15 +33,10 @@ const GlobalState = (props) => {
         }
     }
 
-    // SALVA ARRAY DE URLS
-    const urlsPokemons = pokemons && pokemons.map((pokemon) => {
-        return pokemon.url
-    })
 
-
-    //FAZ REQUISIÇÃO COM AS URLS E SALVA NUM ARRAY TODAS AS INFORMAÇÕES
-    urlsPokemons && urlsPokemons.map((url) => {
-        pegarDetalhesPokemons(url)
+    // CHAMA A REQUISIÇÃO DE DETALHES
+    pokemons && pokemons.map((pokemon) => {
+        pegarDetalhesPokemons(pokemon.url)
     })
 
     return (
