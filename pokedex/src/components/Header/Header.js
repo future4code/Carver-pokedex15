@@ -1,10 +1,9 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom"
 import { Container, Conteudo } from "./styled"
+import { goToPokedexPage, goToHomePage } from '../../routes/coordinator'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
-import { goToPokedexPage, goToHomePage } from '../../routes/coordinator'
 
 const Header = () => {
     const history = useHistory()
