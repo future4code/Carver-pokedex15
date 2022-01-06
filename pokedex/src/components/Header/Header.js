@@ -1,22 +1,17 @@
-import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom"
+import React from "react";
+import { useHistory, useLocation } from "react-router-dom"
 import { Container, Conteudo } from "./styled"
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import HistoryState from "../../context/HistoryContext/HistoryState";
 
 import { goToPokedexPage, goToHomePage } from '../../routes/coordinator'
 
 const Header = () => {
     const history = useHistory()
-
+    const location = useLocation()
+    console.log(location)
 
     return (
-        <Container position="sticky">
-            <button onClick={() => goToHomePage(history)}>HomePage</button>
-            <button onClick={() => goToPokedexPage(history)}>PokedexPage</button>
-        </Container>
-
 
         /*
             se for home => VER MINHA POKEDEX
@@ -24,40 +19,39 @@ const Header = () => {
             se for página de detalhes => VOLTAR ------ NOME DO POKEMON ------ ADICIONAR/REMOVE DA POKEDEX
         */
 
-        // <Container position="sticky">
-        //     <Conteudo>
+        <Container position="sticky">
+            <Conteudo>
 
-        //         {page === "home" ?
+                {location.pathname === "/" ?
 
-        //             <>
-        //                 <Button color="inherit" onClick={() => goToPokedexPage1()}>VER MINHA POKEDEX</Button>
+                    <>
+                        <Button color="inherit" onClick={() => goToPokedexPage(history)}>VER MINHA POKEDEX</Button>
 
-        //                 <Typography variant="h6">
-        //                     LISTA DE POKEMONS (VINDA DA API)
-        //                 </Typography>
+                        <Typography variant="h6">
+                            LISTA DE POKEMONS (VINDA DA API)
+                        </Typography>
 
-        //             </> : page === "pokedex" ?
+                    </> : location.pathname === "/pokedex" ?
 
-        //                 <>
-        //                     <Button color="inherit" onClick={() => goToHomePage1()}>VOLTAR PARA LISTA DE POKEMONS</Button>
+                        <>
+                            <Button color="inherit" onClick={() => goToHomePage(history)}>VOLTAR PARA LISTA DE POKEMONS</Button>
 
-        //                     <Typography variant="h6">
-        //                         LISTA DE POKEMONS (VINDA DA API)
-        //                     </Typography>
+                            <Typography variant="h6">
+                                LISTA DE POKEMONS (VINDA DA API)
+                            </Typography>
 
-        //                 </> : page === "detalhes" ?
-        //                     <>
-        //                         <Button color="inherit" onClick={() => goToHomePage1()}>VOLTAR</Button>
+                        </> :
+                        <>
+                            <Button color="inherit" onClick={() => goToHomePage(history)}>VOLTAR</Button>
 
-        //                         <Typography variant="h6">
-        //                             LISTA DE POKEMONS (VINDA DA API)
-        //                         </Typography>
+                            <Typography variant="h6">
+                                LISTA DE POKEMONS (VINDA DA API)
+                            </Typography>
 
-        //                         <Button color="inherit">ADICIONAR/REMOVE DA POKEDEX</Button>
-        //                     </> : <p>Sentimos muito. Página de erro</p> }
-
-        //     </Conteudo>
-        // </Container>
+                            <Button color="inherit">ADICIONAR/REMOVE DA POKEDEX</Button>
+                        </>}
+            </Conteudo>
+        </Container>
     )
 }
 
