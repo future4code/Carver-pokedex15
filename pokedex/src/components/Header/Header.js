@@ -8,8 +8,7 @@ import Button from '@material-ui/core/Button';
 const Header = () => {
     const history = useHistory()
     const location = useLocation()
-    console.log(location)
-
+    
     return (
 
         /*

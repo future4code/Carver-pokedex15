@@ -4,11 +4,35 @@ import GlobalStateContext from "./GlobalStateContext"
 
 const GlobalState = (props) => {
     const [pokemons, setPokemons] = useState([])
-    const detalhesPokemon = []
+    let pokedex = []
+    const [detalhesPokemon, setDetalhesPokemon] = useState([])
 
     useEffect(() => {
         pegarPokemons()
     }, [])
+
+    useEffect(() => {
+
+        const getDetails = async () => {
+            const newDetailsPokemon = []
+
+            for (let pokemon of pokemons) {
+                try{
+                    const {data} = await axios.get(pokemon.url)
+                    newDetailsPokemon.push(data)
+                }catch(error){
+                    console.log(error)
+                }
+            }
+
+            setDetalhesPokemon(newDetailsPokemon)
+        }
+
+        getDetails()
+
+    }, [pokemons])
+
+
 
     //PRIMEIRA REQUISIÇÃO - RETORNA ARRAY DE NOMES E URLS
 
@@ -21,26 +45,9 @@ const GlobalState = (props) => {
         }
     }
 
-    // PEGA DETALHES DOS POKEMONS 
-
-    const pegarDetalhesPokemons = async (url) => {
-        try {
-            const response = await axios.get(url)
-            detalhesPokemon.push(response.data)
-
-        } catch (error) {
-            alert(error.response.message)
-        }
-    }
-
-
-    // CHAMA A REQUISIÇÃO DE DETALHES
-    pokemons && pokemons.map((pokemon) => {
-        pegarDetalhesPokemons(pokemon.url)
-    })
 
     return (
-        <GlobalStateContext.Provider value={detalhesPokemon}>
+        <GlobalStateContext.Provider value={[detalhesPokemon, pokedex]}>
             {props.children}
         </GlobalStateContext.Provider>
     )
