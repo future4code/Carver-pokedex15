@@ -2,8 +2,8 @@ export const goToHomePage = (history) => {
     history.push("/")
 }
 
-export const goToDetailPage = (history,id) => {
-    history.push(`/detalhes/${id}`)
+export const goToDetailPage = (history, name) => {
+    history.push(`/detalhes/${name}`)
 }
 
 export const goToPokedexPage = (history) => {
