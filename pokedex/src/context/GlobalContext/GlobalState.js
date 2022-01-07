@@ -3,29 +3,32 @@ import axios from "axios";
 import GlobalStateContext from "./GlobalStateContext"
 
 const GlobalState = (props) => {
+    let [pokedex, setPokedex] = useState([])
     const [pokemons, setPokemons] = useState([])
-    let pokedex = []
-    const [detalhesPokemon, setDetalhesPokemon] = useState([])
+    const [detailsPokemon, setDetailsPokemon] = useState([])
 
+    // --------------------REQUISIÇÕES
     useEffect(() => {
         pegarPokemons()
     }, [])
 
+
+    // segunda requisição pra pegar os detalhes e mostrar na tela quando abre
     useEffect(() => {
 
         const getDetails = async () => {
             const newDetailsPokemon = []
 
             for (let pokemon of pokemons) {
-                try{
-                    const {data} = await axios.get(pokemon.url)
+                try {
+                    const { data } = await axios.get(pokemon.url)
                     newDetailsPokemon.push(data)
-                }catch(error){
+                } catch (error) {
                     console.log(error)
                 }
             }
 
-            setDetalhesPokemon(newDetailsPokemon)
+            setDetailsPokemon(newDetailsPokemon)
         }
 
         getDetails()
@@ -33,9 +36,7 @@ const GlobalState = (props) => {
     }, [pokemons])
 
 
-
-    //PRIMEIRA REQUISIÇÃO - RETORNA ARRAY DE NOMES E URLS
-
+    //primeira requisição - retorna array com nomes e urls
     const pegarPokemons = async () => {
         try {
             const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20&offset=1")
@@ -45,9 +46,12 @@ const GlobalState = (props) => {
         }
     }
 
+    //----------------------------- funções de remover e adicionar na pokedex
+
+
 
     return (
-        <GlobalStateContext.Provider value={[detalhesPokemon, pokedex]}>
+        <GlobalStateContext.Provider value={[detailsPokemon, pokedex, setPokedex]}>
             {props.children}
         </GlobalStateContext.Provider>
     )

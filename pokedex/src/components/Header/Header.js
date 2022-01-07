@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom"
 import { Container, Conteudo } from "./styled"
-import { goToPokedexPage, goToHomePage } from '../../routes/coordinator'
+import { goToPokedexPage, goToHomePage, goToBack } from '../../routes/coordinator'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
@@ -40,7 +40,7 @@ const Header = () => {
 
                         </> :
                         <>
-                            <Button color="inherit" onClick={() => goToHomePage(history)}>VOLTAR</Button>
+                            <Button color="inherit" onClick={() => goToBack(history)}>VOLTAR</Button>
 
                             <Typography variant="h6">
                                 LISTA DE POKEMONS (VINDA DA API)
