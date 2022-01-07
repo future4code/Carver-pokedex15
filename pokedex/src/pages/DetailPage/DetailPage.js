@@ -1,10 +1,11 @@
 import { useContext, useLayoutEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext"
+import { Attacks, Container, ContainerCentral, Imagens, Powers, PowersDiv, Types } from "./styled"
 
 const DetailPage = () => {
     const params = useParams()
-    const [detalhesPokemon, pokedex] = useContext(GlobalStateContext)
+    const [detailsPokemon, , ] = useContext(GlobalStateContext)
     const [powers, setPowers] = useState([])
     const [types, setTypes] = useState([])
     const [attacks, setAttacks] = useState([])
@@ -12,8 +13,9 @@ const DetailPage = () => {
     const [photoFront, setPhotoFront] = useState("")
 
 
+
     useLayoutEffect(() => {
-        const pokemonEscolhido = detalhesPokemon && detalhesPokemon.filter((pokemon) => {
+        const pokemonEscolhido = detailsPokemon && detailsPokemon.filter((pokemon) => {
             return pokemon.name === params.name
         })
         setPhotoBack(pokemonEscolhido[0].sprites.back_default)
@@ -30,10 +32,10 @@ const DetailPage = () => {
     const cardPower = powers && powers.map((power) => {
         return (
             <div key={power.stat.name}>
-                <bold>{power.stat.name}:</bold>
-                {power.base_stat}
+                <p>{power.stat.name}:{power.base_stat}</p>
             </div>
         )
+
     })
 
     // CONSTRUÇÃO CARD DOS TIPOS
@@ -56,28 +58,32 @@ const DetailPage = () => {
         }
     })
 
-
     return (
-        <div>
-            <img src={photoFront} alt="imagem do pokemon de frente" />
-            <img src={photoBack} alt="imagem do pokemon de costas" />
-            <div>
-                <h2>Poderes:</h2>
-                {cardPower}
-            </div>
+        <Container>
+            <ContainerCentral>
+                <Imagens>
+                    <img src={photoFront} alt="imagem do pokemon de frente" />
+                    <img src={photoBack} alt="imagem do pokemon de costas" />
+                </Imagens>
+                <PowersDiv>
+                    <h2>PODERES:</h2>
+                    {cardPower}
 
-            <div>
-                <h2>Tipos:</h2>
-                {cardTypes}
-            </div>
+                </PowersDiv>
 
-            <div>
-                <h2>Principais ataques:</h2>
-                {principalsAttacks}
-            </div>
+                <Types>
+                    <h2>TIPOS:</h2>
+                    {cardTypes}
+                </Types>
 
+                <Attacks>
+                    <h2>PRINCIPAIS ATAQUES:</h2>
+                    {principalsAttacks}
+                </Attacks>
 
-        </div>
+            </ContainerCentral>
+
+        </Container>
     )
 }
 
