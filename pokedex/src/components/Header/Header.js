@@ -59,7 +59,7 @@ const Header = () => {
             se for página de detalhes => VOLTAR ------ NOME DO POKEMON ------ ADICIONAR/REMOVE DA POKEDEX
         */
 
-        <Container position="sticky">
+        <Container position="sticky" color="primary">
             <Conteudo>
 
                 {location.pathname === "/" ?
