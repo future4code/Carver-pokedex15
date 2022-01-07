@@ -8,6 +8,9 @@ import Button from '@material-ui/core/Button';
 const Header = () => {
     const history = useHistory()
     const location = useLocation()
+    console.log(location)
+    
+    const name = (location.pathname.split("/"))
     
     return (
 
@@ -43,7 +46,7 @@ const Header = () => {
                             <Button color="inherit" onClick={() => goToBack(history)}>VOLTAR</Button>
 
                             <Typography variant="h6">
-                                LISTA DE POKEMONS (VINDA DA API)
+                                {name[2].toUpperCase()}
                             </Typography>
 
                             <Button color="inherit">ADICIONAR/REMOVE DA POKEDEX</Button>
