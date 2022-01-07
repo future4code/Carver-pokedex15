@@ -4,14 +4,14 @@ import { Container, GlobalStyle } from "./appStyled";
 
 function App() {
 
-  return (
+  return ( 
     <Container>
       <GlobalStyle />
       <GlobalState>
         <Router />
       </GlobalState>
     </Container>
-
+ 
   );
 }
 

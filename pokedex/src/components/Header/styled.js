@@ -1,14 +1,15 @@
-import { AppBar, Toolbar } from '@material-ui/core'
 import styled from 'styled-components'
 
-export const Container = styled(AppBar)`
+
+export const Container = styled.div`
     display: flex;
     justify-content: center;
     border: 1px solid blue;
-    background-color: lightsalmon;
+    background-color: #52b4ff;
+    height: 10vh;
 `
 
-export const Conteudo = styled(Toolbar)`
+export const Conteudo = styled.div`
     display: flex;
     justify-content: space-between;
     border: 1px solid white;

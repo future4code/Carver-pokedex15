@@ -3,15 +3,40 @@ import axios from "axios";
 import GlobalStateContext from "./GlobalStateContext"
 
 const GlobalState = (props) => {
+    let [pokedex, setPokedex] = useState([])
     const [pokemons, setPokemons] = useState([])
-    const detalhesPokemon = []
+    const [detailsPokemon, setDetailsPokemon] = useState([])
 
+    // --------------------REQUISIÇÕES
     useEffect(() => {
         pegarPokemons()
     }, [])
 
-    //PRIMEIRA REQUISIÇÃO - RETORNA ARRAY DE NOMES E URLS
 
+    // segunda requisição pra pegar os detalhes e mostrar na tela quando abre
+    useEffect(() => {
+
+        const getDetails = async () => {
+            const newDetailsPokemon = []
+
+            for (let pokemon of pokemons) {
+                try {
+                    const { data } = await axios.get(pokemon.url)
+                    newDetailsPokemon.push(data)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
+            setDetailsPokemon(newDetailsPokemon)
+        }
+
+        getDetails()
+
+    }, [pokemons])
+
+
+    //primeira requisição - retorna array com nomes e urls
     const pegarPokemons = async () => {
         try {
             const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20&offset=1")
@@ -21,26 +46,12 @@ const GlobalState = (props) => {
         }
     }
 
-    // PEGA DETALHES DOS POKEMONS 
-
-    const pegarDetalhesPokemons = async (url) => {
-        try {
-            const response = await axios.get(url)
-            detalhesPokemon.push(response.data)
-
-        } catch (error) {
-            alert(error.response.message)
-        }
-    }
+    //----------------------------- funções de remover e adicionar na pokedex
 
 
-    // CHAMA A REQUISIÇÃO DE DETALHES
-    pokemons && pokemons.map((pokemon) => {
-        pegarDetalhesPokemons(pokemon.url)
-    })
 
     return (
-        <GlobalStateContext.Provider value={detalhesPokemon}>
+        <GlobalStateContext.Provider value={[detailsPokemon, pokedex, setPokedex]}>
             {props.children}
         </GlobalStateContext.Provider>
     )

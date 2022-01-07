@@ -9,10 +9,10 @@ import CardPokemon from "../../components/CardPokemon/CardPokemon"
 
 const HomePage = () => {
     const history = useHistory()
-    const detalhesPokemons = useContext(GlobalStateContext)
-    console.log(detalhesPokemons)
+    const [detailsPokemon, pokedex, setPokedex] = useContext(GlobalStateContext)
+    
 
-    const CardInfoPokemon = detalhesPokemons && detalhesPokemons.map((pokemon) => {
+    const CardInfoPokemon = detailsPokemon && detailsPokemon.map((pokemon) => {
         return(
         <CardPokemon name={pokemon.name} photo={pokemon.sprites.front_default}/> 
         )
