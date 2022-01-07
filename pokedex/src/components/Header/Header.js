@@ -1,14 +1,55 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom"
 import { Container, Conteudo } from "./styled"
-import { goToPokedexPage, goToHomePage } from '../../routes/coordinator'
+import { goToPokedexPage, goToHomePage, goToBack } from '../../routes/coordinator'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext";
 
 const Header = () => {
+    const [detailsPokemon, pokedex, setPokedex] = useContext(GlobalStateContext)
     const history = useHistory()
     const location = useLocation()
-    console.log(location)
+    const name = (location.pathname.split("/"))
+    const [textButton, setTextButton] = useState("")
+
+
+    const chosenPokemon = detailsPokemon.filter((pokemon) => {
+        return pokemon.name === name[2]
+    })
+
+    console.log(name[2])
+
+    useEffect(() => {
+        if (location.pathname.includes(name[2])) {
+            const index = (pokedex.findIndex((pokemon) => pokemon.name === name[2]))
+            console.log(index)
+            if (index === -1) {
+                setTextButton("Adicionar")
+            } else {
+                setTextButton("Remover")
+            }
+        }
+    }, [])
+
+    const addOrRemovePokemon = (name, photo) => {
+        const index = (pokedex.findIndex((pokemon) => pokemon.name === name))
+        if (index === -1) {
+            const newPokedex = [...pokedex, { name, photo }]
+            setPokedex(newPokedex)
+        } else {
+            const newPokedex = [...pokedex];
+            newPokedex.splice(index, 1)
+            setPokedex(newPokedex)
+        }
+    }
+
+    // pokedex.map(())
+
+
+    // }
+
+    //preciso procurar pra ver se o pokemon ta no pokedex. se estiver, aparecer pra remover, se não tiver aparecer pra adicionar
 
     return (
 
@@ -41,13 +82,13 @@ const Header = () => {
 
                         </> :
                         <>
-                            <Button color="inherit" onClick={() => goToHomePage(history)}>VOLTAR</Button>
+                            <Button color="inherit" onClick={() => goToBack(history)}>VOLTAR</Button>
 
                             <Typography variant="h6">
-                                LISTA DE POKEMONS (VINDA DA API)
+                                {name[2].toUpperCase()}
                             </Typography>
 
-                            <Button color="inherit">ADICIONAR/REMOVE DA POKEDEX</Button>
+                            <Button color="inherit" onClick={() => addOrRemovePokemon(chosenPokemon[0].name, chosenPokemon[0].sprites.front_default)}>{textButton === "Adicionar" ? <> Adicionar </> : <> Remover </>}</Button>
                         </>}
             </Conteudo>
         </Container>
@@ -55,5 +96,3 @@ const Header = () => {
 }
 
 export default Header
-
-//AAAAAAAAAAAAAAAAAAAA QUE BAGUNÇA

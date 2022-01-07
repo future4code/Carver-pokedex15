@@ -1,17 +1,19 @@
 import { useContext, useLayoutEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext"
+
 const DetailPage = () => {
     const params = useParams()
-    const pokemonDetalhes = useContext(GlobalStateContext)
+    const [detalhesPokemon, pokedex] = useContext(GlobalStateContext)
     const [powers, setPowers] = useState([])
     const [types, setTypes] = useState([])
     const [attacks, setAttacks] = useState([])
     const [photoBack, setPhotoBack] = useState("")
     const [photoFront, setPhotoFront] = useState("")
 
+
     useLayoutEffect(() => {
-        const pokemonEscolhido = pokemonDetalhes && pokemonDetalhes.filter((pokemon) => {
+        const pokemonEscolhido = detalhesPokemon && detalhesPokemon.filter((pokemon) => {
             return pokemon.name === params.name
         })
         setPhotoBack(pokemonEscolhido[0].sprites.back_default)
