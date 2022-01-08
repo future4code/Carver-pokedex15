@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom"
-import { Container, Conteudo } from "./styled"
+import { Container, Detalhes, Home, Pokedex, } from "./styled"
 import { goToPokedexPage, goToHomePage, goToBack } from '../../routes/coordinator'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -11,86 +11,103 @@ const Header = () => {
     const history = useHistory()
     const location = useLocation()
     const name = (location.pathname.split("/"))
-    const [textButton, setTextButton] = useState("")
+    const [text, setText] = useState(true)
+    const [pokemon, setPokemon] = useState([])
 
-
-    const chosenPokemon = detailsPokemon.filter((pokemon) => {
-        return pokemon.name === name[2]
-    })
-
-    console.log(name[2])
 
     useEffect(() => {
-        if (location.pathname.includes(name[2])) {
-            const index = (pokedex.findIndex((pokemon) => pokemon.name === name[2]))
-            console.log(index)
-            if (index === -1) {
-                setTextButton("Adicionar")
-            } else {
-                setTextButton("Remover")
-            }
-        }
-    }, [])
+        pegarPokemon()
 
-    const addOrRemovePokemon = (name, photo) => {
-        const index = (pokedex.findIndex((pokemon) => pokemon.name === name))
-        if (index === -1) {
-            const newPokedex = [...pokedex, { name, photo }]
-            setPokedex(newPokedex)
+        if (pokemon.isPokedex === false) {
+            setText("Adicionar")
         } else {
-            const newPokedex = [...pokedex];
-            newPokedex.splice(index, 1)
-            setPokedex(newPokedex)
+            setText("Remover")
         }
+
+    }, [pokemon.isPokedex])
+    
+
+    const pegarPokemon = () => {
+        const chosenPokemon = detailsPokemon.filter((pokemon) => {
+            return pokemon.name === name[2]
+        })
+        setPokemon(chosenPokemon)
+        console.log(pokemon)
     }
 
-    // pokedex.map(())
+
+    const addOrRemovePokemon = (name, photo, isPokedex) => {
+        console.log(name, photo, isPokedex)
+        console.log(pokedex)
+
+        if (isPokedex === false) {
+            // setText(!text)
+
+            const index = (detailsPokemon.findIndex((pokemon) => { return pokemon.name === name }))
+            detailsPokemon[index].isPokedex = true
+            const newPokedex = [...pokedex, { name, photo, isPokedex: true }]
+            setPokedex(newPokedex)
+            console.log(pokedex)
 
 
-    // }
+        } else {
+            // setText(!text)
 
-    //preciso procurar pra ver se o pokemon ta no pokedex. se estiver, aparecer pra remover, se não tiver aparecer pra adicionar
+            // index de remover
+            const indexRemove = (pokedex.findIndex((pokemon) => pokemon.name === name))
+            const newPokedex = [...pokedex];
+            newPokedex.splice(indexRemove, 1)
+            setPokedex(newPokedex)
+            console.log(pokedex)
+
+            const indexRender = (detailsPokemon.findIndex((pokemon) => { return pokemon.name === name }))
+            detailsPokemon[indexRender].isPokedex = false
+        }
+
+    }
+
+    console.log(pokedex)
+
+    const addPokemon = (name, photo, isPokedex) => {
+        const index = (detailsPokemon.findIndex((pokemon) => { return pokemon.name === name }))
+        detailsPokemon[index].isPokedex = true
+        const newPokedex = [...pokedex, { name, photo, isPokedex: true }]
+        setPokedex(newPokedex)
+
+    }
+
 
     return (
 
-        /*
-            se for home => VER MINHA POKEDEX
-            se for pokedex => VOLTAR PARA LISTA DE POKEMONS
-            se for página de detalhes => VOLTAR ------ NOME DO POKEMON ------ ADICIONAR/REMOVE DA POKEDEX
-        */
+        <Container>
+            {location.pathname === "/" ?
 
-        <Container position="sticky" color="primary">
-            <Conteudo>
+                <Home>
+                    <Button color="inherit" onClick={() => goToPokedexPage(history)}>POKEBOLA</Button>
 
-                {location.pathname === "/" ?
+                    <Typography variant="h6">
+                        POKEDEX
+                    </Typography>
 
-                    <>
-                        <Button color="inherit" onClick={() => goToPokedexPage(history)}>VER MINHA POKEDEX</Button>
+                </Home> : location.pathname === "/pokedex" ?
+
+                    <Pokedex>
+                        <Button color="inherit" onClick={() => goToHomePage(history)}>HOMEPAGE</Button>
 
                         <Typography variant="h6">
-                            LISTA DE POKEMONS (VINDA DA API)
+                            POKEDEX
                         </Typography>
 
-                    </> : location.pathname === "/pokedex" ?
+                    </Pokedex> :
+                    <Detalhes>
+                        <Button color="inherit" onClick={() => goToBack(history)}>VOLTAR</Button>
 
-                        <>
-                            <Button color="inherit" onClick={() => goToHomePage(history)}>VOLTAR PARA LISTA DE POKEMONS</Button>
+                        <Typography variant="h6">
+                            {name[2].toUpperCase()}
+                        </Typography>
 
-                            <Typography variant="h6">
-                                LISTA DE POKEMONS (VINDA DA API)
-                            </Typography>
-
-                        </> :
-                        <>
-                            <Button color="inherit" onClick={() => goToBack(history)}>VOLTAR</Button>
-
-                            <Typography variant="h6">
-                                {name[2].toUpperCase()}
-                            </Typography>
-
-                            <Button color="inherit" onClick={() => addOrRemovePokemon(chosenPokemon[0].name, chosenPokemon[0].sprites.front_default)}>{textButton === "Adicionar" ? <> Adicionar </> : <> Remover </>}</Button>
-                        </>}
-            </Conteudo>
+                        <Button color="inherit" onClick={() => addOrRemovePokemon(pokemon.name, pokemon.sprites.front_default, pokemon.isPokedex)}>{text === "Adicionar" ? <> Adicionar </> : <>Remover</>}</Button>
+                    </Detalhes>}
         </Container>
     )
 }

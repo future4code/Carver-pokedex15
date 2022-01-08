@@ -4,14 +4,22 @@ import GlobalStateContext from "../context/GlobalContext/GlobalStateContext"
 import { goToDetailPage } from "../routes/coordinator"
 
 const PokedexPage = () => {
-    const [, pokedex, setPokedex] = useContext(GlobalStateContext)
+    const [detailsPokemon, pokedex, setPokedex] = useContext(GlobalStateContext)
     const history = useHistory()
 
     const removePoke = (name) => {
-        const index = (pokedex.findIndex((pokemon) => pokemon.name === name))
+        
+        // index de remover
+        const indexRemove = (pokedex.findIndex((pokemon) => pokemon.name === name))
         const newPokedex = [...pokedex];
-        newPokedex.splice(index, 1)
+        newPokedex.splice(indexRemove, 1)
         setPokedex(newPokedex)
+
+
+        // index da renderização
+        const indexRender = (detailsPokemon.findIndex((pokemon) => { return pokemon.name === name }))
+        detailsPokemon[indexRender].isPokedex = false
+
     }
 
     const pokemons = pokedex && pokedex.map((poke) => {

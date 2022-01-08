@@ -22,7 +22,9 @@ const GlobalState = (props) => {
             for (let pokemon of pokemons) {
                 try {
                     const { data } = await axios.get(pokemon.url)
-                    newDetailsPokemon.push(data)
+                    const newData = {...data, isPokedex: false}
+                    newDetailsPokemon.push(newData)
+                    
                 } catch (error) {
                     console.log(error)
                 }
