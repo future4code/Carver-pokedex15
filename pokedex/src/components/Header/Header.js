@@ -25,6 +25,7 @@ const Header = () => {
         }
 
     }, [pokemon.isPokedex])
+    
 
     const pegarPokemon = () => {
         const chosenPokemon = detailsPokemon.filter((pokemon) => {
@@ -33,7 +34,6 @@ const Header = () => {
         setPokemon(chosenPokemon)
         console.log(pokemon)
     }
-
 
 
     const addOrRemovePokemon = (name, photo, isPokedex) => {
@@ -75,23 +75,11 @@ const Header = () => {
         setPokedex(newPokedex)
 
     }
-    // pokedex.map(())
 
-
-    // }
-
-    //preciso procurar pra ver se o pokemon ta no pokedex. se estiver, aparecer pra remover, se não tiver aparecer pra adicionar
 
     return (
 
-        /*
-            se for home => VER MINHA POKEDEX
-            se for pokedex => VOLTAR PARA LISTA DE POKEMONS
-            se for página de detalhes => VOLTAR ------ NOME DO POKEMON ------ ADICIONAR/REMOVE DA POKEDEX
-        */
-
         <Container>
-
             {location.pathname === "/" ?
 
                 <Home>

@@ -27,7 +27,7 @@ export const Pokedex = styled.div`
 export const Detalhes = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 53.8%;
+    width: 100%;
     align-items: center;
     padding: 1vw;
 `
