@@ -7,6 +7,13 @@ export const CardContainer = styled.div`
     width: 35vh;
     height: 30vh;
     background-color: white;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        border-radius: 10px;
+        margin: 2vw;
+        margin-bottom: 3vw;
+        width: 25vh;
+    }
 `
 
 export const ImgContainer = styled.div`
@@ -23,8 +30,7 @@ export const ButtonCard = styled.div`
     display: flex;
     flex-direction: row;
 
-    button {
-        
+    button { 
         display: flex;
         align-items: space-between;
         border: 1px yellow;
@@ -44,4 +50,5 @@ export const CardText = styled.div`
     font-family: Georgia;
     text-align: center;
     text-transform: capitalize;
+    font-weight: bold;
 `

@@ -3,29 +3,12 @@ import { useHistory, useLocation } from "react-router-dom"
 import { Container, Detalhes, Home, Pokedex, } from "./styled"
 import { goToPokedexPage, goToHomePage, goToBack } from '../../routes/coordinator'
 import { Typography, Button } from '@material-ui/core';
-import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext";
 
 const Header = () => {
     const history = useHistory()
     const location = useLocation()
-    const [detailsPokemon, ,] = useContext(GlobalStateContext)
     const name = (location.pathname.split("/"))
-    const [pokemon, setPokemon] = useState([])
 
-
-    useEffect(() => {
-
-        const getPokemon = () => {
-            const chosenPokemon = detailsPokemon.filter((pokemon) => {
-                return pokemon.name === name[2]
-            })
-            setPokemon(chosenPokemon)
-            console.log(pokemon)
-        }
-
-        getPokemon()
-
-    }, [])
 
     return (
 

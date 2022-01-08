@@ -4,7 +4,6 @@ import Header from '../components/Header/Header'
 import HomePage from '../pages/HomePage/HomePage'
 import PokedexPage from '../pages/Pokedex/PokedexPage'
 import DetailPage from '../pages/DetailPage/DetailPage'
-import ErrorPage from '../pages/ErrorPage'
 
 const Router = () => {
     return (
@@ -19,9 +18,6 @@ const Router = () => {
                 </Route>
                 <Route exact path={"/detalhes/:name"}>
                     <DetailPage />
-                </Route>
-                <Route>
-                    <ErrorPage />
                 </Route>
             </Switch>
         </BrowserRouter>

@@ -18,6 +18,18 @@ export const ContainerCentral = styled.div`
     background-color: rgba(253,225,177);
     padding: 1vw;
     border: 5px double white;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        height: auto;
+        padding: 5vw 1vw 5vw 1vw;
+        background-color: rgba(146,199,241);
+        margin: 3vw;
+    }
 `
 
 export const Imagens = styled.div`
@@ -27,6 +39,18 @@ export const Imagens = styled.div`
     grid-row: 1/4;
     background-color: rgba(146,199,241);
     border-radius: 2vw;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        justify-content: center;
+        border: 1px solid black;
+        width: 95%;
+        height: 65%;
+        background-color: rgba(253,225,177, 0.8);
+
+        img{
+            height: 23vh;
+        }
+    }
 `
 
 export const PowersDiv = styled.div`
@@ -48,6 +72,24 @@ export const PowersDiv = styled.div`
         font-size: 1.5vw;
     }
 
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        border: 2px solid black;
+        width: 95%;
+        height: auto;
+        padding-bottom: 3vw;
+        background-color: rgba(253,225,177, 0.8);
+
+        h2{
+            font-size: 8vw;
+            margin: 2vw;
+        }
+
+        p{
+            font-size: 5vw;
+            font-weight: bold;
+        }
+    }
+
 `
 
 export const Types = styled.div`
@@ -66,6 +108,24 @@ export const Types = styled.div`
 
     p{
         font-size: 1.5vw;
+    }
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        border: 2px solid black;
+        width: 95%;
+        height: auto;
+        padding-bottom: 3vw;
+        background-color: rgba(253,225,177, 0.8);
+
+        h2{
+            font-size: 8vw;
+            margin: 2vw;
+        }
+
+        p{
+            font-size: 5vw;
+            font-weight: bold;
+        }
     }
 
 `
@@ -89,6 +149,23 @@ export const Attacks = styled.div`
         font-size: 1.5vw;
     }
 
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        border: 2px solid black;
+        width: 95%;
+        height: auto;
+        padding-bottom: 3vw;
+        background-color: rgba(253,225,177, 0.8);
+
+        h2{
+            font-size: 8vw;
+            margin: 2vw;
+        }
+
+        p{
+            font-size: 5vw;
+            font-weight: bold;
+        }
+    }
 `
 
 export const Pokebola = styled.div`

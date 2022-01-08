@@ -12,6 +12,16 @@ export const Home = styled.div`
     width: 54.5%;
     align-items: center;
     padding: 1vw;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        justify-content: space-between;
+        width: 100%;
+        padding: 5vw;
+
+        button{
+            border: 1px solid black;
+        }
+    }
 `
 
 export const Pokedex = styled.div`
@@ -20,6 +30,16 @@ export const Pokedex = styled.div`
     width: 53.8%;
     align-items: center;
     padding: 1vw;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        justify-content: space-between;
+        width: 100%;
+        padding: 5vw;
+
+        button{
+            border: 1px solid black;
+        }
+    }
 `
 
 
@@ -29,4 +49,12 @@ export const Detalhes = styled.div`
     width: 100%;
     align-items: center;
     padding: 1vw;
+
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        padding: 5vw;
+
+        button{
+            border: 1px solid black;
+        }
+    }
 `
