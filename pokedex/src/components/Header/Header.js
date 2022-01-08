@@ -2,80 +2,30 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom"
 import { Container, Detalhes, Home, Pokedex, } from "./styled"
 import { goToPokedexPage, goToHomePage, goToBack } from '../../routes/coordinator'
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import { Typography, Button } from '@material-ui/core';
 import GlobalStateContext from "../../context/GlobalContext/GlobalStateContext";
 
 const Header = () => {
-    const [detailsPokemon, pokedex, setPokedex] = useContext(GlobalStateContext)
     const history = useHistory()
     const location = useLocation()
+    const [detailsPokemon, ,] = useContext(GlobalStateContext)
     const name = (location.pathname.split("/"))
-    const [text, setText] = useState(true)
     const [pokemon, setPokemon] = useState([])
 
 
     useEffect(() => {
-        pegarPokemon()
 
-        if (pokemon.isPokedex === false) {
-            setText("Adicionar")
-        } else {
-            setText("Remover")
+        const getPokemon = () => {
+            const chosenPokemon = detailsPokemon.filter((pokemon) => {
+                return pokemon.name === name[2]
+            })
+            setPokemon(chosenPokemon)
+            console.log(pokemon)
         }
 
-    }, [pokemon.isPokedex])
-    
+        getPokemon()
 
-    const pegarPokemon = () => {
-        const chosenPokemon = detailsPokemon.filter((pokemon) => {
-            return pokemon.name === name[2]
-        })
-        setPokemon(chosenPokemon)
-        console.log(pokemon)
-    }
-
-
-    const addOrRemovePokemon = (name, photo, isPokedex) => {
-        console.log(name, photo, isPokedex)
-        console.log(pokedex)
-
-        if (isPokedex === false) {
-            // setText(!text)
-
-            const index = (detailsPokemon.findIndex((pokemon) => { return pokemon.name === name }))
-            detailsPokemon[index].isPokedex = true
-            const newPokedex = [...pokedex, { name, photo, isPokedex: true }]
-            setPokedex(newPokedex)
-            console.log(pokedex)
-
-
-        } else {
-            // setText(!text)
-
-            // index de remover
-            const indexRemove = (pokedex.findIndex((pokemon) => pokemon.name === name))
-            const newPokedex = [...pokedex];
-            newPokedex.splice(indexRemove, 1)
-            setPokedex(newPokedex)
-            console.log(pokedex)
-
-            const indexRender = (detailsPokemon.findIndex((pokemon) => { return pokemon.name === name }))
-            detailsPokemon[indexRender].isPokedex = false
-        }
-
-    }
-
-    console.log(pokedex)
-
-    const addPokemon = (name, photo, isPokedex) => {
-        const index = (detailsPokemon.findIndex((pokemon) => { return pokemon.name === name }))
-        detailsPokemon[index].isPokedex = true
-        const newPokedex = [...pokedex, { name, photo, isPokedex: true }]
-        setPokedex(newPokedex)
-
-    }
-
+    }, [])
 
     return (
 
@@ -106,7 +56,8 @@ const Header = () => {
                             {name[2].toUpperCase()}
                         </Typography>
 
-                        <Button color="inherit" onClick={() => addOrRemovePokemon(pokemon.name, pokemon.sprites.front_default, pokemon.isPokedex)}>{text === "Adicionar" ? <> Adicionar </> : <>Remover</>}</Button>
+                        <Button color="inherit" onClick={() => goToHomePage(history)}>HOMEPAGE</Button>
+
                     </Detalhes>}
         </Container>
     )

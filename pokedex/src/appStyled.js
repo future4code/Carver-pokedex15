@@ -1,5 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
+
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -10,7 +11,5 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const Container = styled.div`
-    border: 1px solid red;
-    min-height: 100vh;
-    background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+  min-height: 100vh;
 `
