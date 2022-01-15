@@ -1,6 +1,6 @@
 # POKEDEX
 ## Projeto POKEDEX
-### Surge: responsible-time.surge.sh
+### Surge: https://responsible-time.surge.sh/
 
 ## Integrantes:
 Anna Isabella Gomes Quaranta
