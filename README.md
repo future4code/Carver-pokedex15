@@ -4,9 +4,9 @@
 ### Surge: https://responsible-time.surge.sh/
 
 ## Integrantes:
-Anna Isabella Gomes Quaranta
-
-Camila Santos Ferreira
+<a href="https://github.com/BellaQuaranta" target = _blank>Anna Isabella Gomes Quaranta</a>
+</br>
+<a href="https://github.com/camilaferrei" target = _blank>Camila Santos Ferreira</a>
 
 ### O que é:
 Pokedex é um site em que você pode capturar e ver os detalhes dos seus pokemóns favoritos.
