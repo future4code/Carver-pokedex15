@@ -1,12 +1,6 @@
-![image](https://labenu.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F74d364ac-12ec-48f8-a71c-8ab2e4230be1%2F115599641-3874f700-a2b2-11eb-842f-263b22b00be2.png?table=block&id=510e3847-66ae-447c-ae5e-92bf62bb0efe&spaceId=f97190af-c9c2-4592-9ae2-6311b6b728de&width=2000&userId=&cache=v2)
 # POKEDEX
 ## Projeto POKEDEX
-### Surge: https://responsible-time.surge.sh/
-
-## Integrantes:
-<a href="https://github.com/BellaQuaranta" target = _blank>Anna Isabella Gomes Quaranta</a>
-</br>
-<a href="https://github.com/camilaferrei" target = _blank>Camila Santos Ferreira</a>
+### Surge: 
 
 ### O que é:
 Pokedex é um site em que você pode capturar e ver os detalhes dos seus pokemóns favoritos.
